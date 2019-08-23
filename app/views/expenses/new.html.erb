@@ -1,0 +1,23 @@
+<h1>Add Expense Item</h1>
+
+
+<%= form_with scope: :expense, url: expenses_path, local: true do |form| %>
+  <p>
+    <%= form.label :amount %><br>
+    <%= form.text_field :amount %>
+  </p>
+ 
+  <p>
+    <%= form.label :description %><br>
+    <%= form.text_area :description %>
+  </p>
+
+  <p>
+    <%= form.label :user %><br>
+    <%= form.text_field :user %>
+  </p>
+ 
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
