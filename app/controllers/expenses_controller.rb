@@ -1,12 +1,32 @@
 class ExpensesController < ApplicationController
+	def index
+		@expenses = Expense.all
+	end
+	def show
+		@expense = Expense.find(params[:id])
+	end
 	def new
-
+		@expense = Expense.new
 	end
 
 	def create
-		@expense = Expense.new(params[:expense])
+		@expense = Expense.new(expense_params)
  
-  		@expense.save
-  		redirect_to @expense
+  		if @expense.save
+			redirect_to @expense
+		else
+			render 'new'
+		end
 	end
+
+	def destroy
+		@expense = Expense.find(params[:id])
+		@expense.destroy
+
+		redirect_to expenses_path
+	end
+	private
+	  def expense_params
+	    params.require(:expense).permit(:amount, :description, :user)
+	  end
 end
