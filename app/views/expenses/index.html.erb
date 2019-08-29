@@ -2,12 +2,12 @@
  
 <%= link_to 'Add New Expense', new_expense_path %>
 
-<table>
+<table class="table-bordered">
   <tr>
     <th>Amount</th>
     <th>Description</th>
     <th>User</th>
-    <th>Action</th>
+    <th >Action</th>
   </tr>
  
   <% @expenses.each do |expense| %>
@@ -15,11 +15,14 @@
       <td><%= expense.amount %></td>
       <td><%= expense.description %></td>
       <td><%= expense.user %></td>
-      <td><%= link_to 'Show', expense_path(expense) %></td>
-      
-      <td><%= link_to 'Destroy', expense_path(expense),
+      <td>
+        <%= link_to 'Show', expense_path(expense) %>
+        <%= link_to 'Edit', edit_expense_path(expense) %>
+        <%= link_to 'Destroy', expense_path(expense),
               method: :delete,
-              data: { confirm: 'Are you sure?' } %></td>
+              data: { confirm: 'Are you sure?' } %>
+              
+      </td>
     </tr>
   <% end %>
 </table>
