@@ -10,6 +10,12 @@
 <% end %>
 
 <%= form_with model: @expense, local: true do |form| %>
+  
+  <p>
+    Expense Type<br>
+    <%= form.collection_select :category_id, Category.order(:cat_name),:id,:cat_name, prompt: true %>
+  </p>
+
   <p>
     <%= form.label :amount %><br>
     <%= form.text_field :amount %>

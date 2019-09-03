@@ -4,6 +4,7 @@ class ExpensesController < ApplicationController
 	end
 	def show
 		@expense = Expense.find(params[:id])
+		@category = Category.find(@expense.category_id)
 	end
 	def new
 		@expense = Expense.new
@@ -11,7 +12,7 @@ class ExpensesController < ApplicationController
 
 	def create
 		@expense = Expense.new(expense_params)
- 
+
   		if @expense.save
 			redirect_to @expense
 		else
@@ -25,7 +26,7 @@ class ExpensesController < ApplicationController
 
 	def update
 	  @expense = Expense.find(params[:id])
-	 
+
 	  if @expense.update(expense_params)
 	    redirect_to @expense
 	  else
@@ -41,6 +42,6 @@ class ExpensesController < ApplicationController
 	end
 	private
 	  def expense_params
-	    params.require(:expense).permit(:amount, :description, :user)
+	    params.require(:expense).permit(:amount, :description, :user, :category_id)
 	  end
 end
