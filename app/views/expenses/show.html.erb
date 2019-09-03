@@ -10,7 +10,9 @@
 
 <p>
   <strong>Expense Type:</strong>
-  <%= @category.cat_name %>
+  <% if !@category.nil? %>
+	<%= @category.cat_name %>
+  <% end %>
 </p>
 
 <p>

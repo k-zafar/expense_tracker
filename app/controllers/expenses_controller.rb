@@ -2,10 +2,14 @@ class ExpensesController < ApplicationController
 	def index
 		@expenses = Expense.all
 	end
+
 	def show
 		@expense = Expense.find(params[:id])
-		@category = Category.find(@expense.category_id)
+		if !@expense.category_id.nil? 
+			@category = Category.find(@expense.category_id)
+		end
 	end
+	
 	def new
 		@expense = Expense.new
 	end
