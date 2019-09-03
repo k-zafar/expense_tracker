@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   get 'welcome/index'
   
   resources :expenses
+
+  resources :categories
   
   root 'welcome#index'
   
