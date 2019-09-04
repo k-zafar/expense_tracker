@@ -8,12 +8,7 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/ruby:2.5.5-node-browsers
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/postgres:9.4
-      environment:
+        environment:
           PGHOST: localhost
           PGUSER: expense_tracker
           RAILS_ENV: test
@@ -21,7 +16,7 @@ jobs:
         environment:
           POSTGRES_USER: postgres
           POSTGRES_DB: expense_tracker
-          POSTGRES_PASSWORD: "root123"
+          POSTGRES_PASSWORD: root123
 
     working_directory: ~/repo
 
@@ -31,9 +26,9 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+            - expense_tracker-{{ checksum "Gemfile.lock" }}
             # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+            - expense_tracker-
 
       - run:
           name: install dependencies
@@ -43,7 +38,7 @@ jobs:
       - save_cache:
           paths:
             - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+          key: expense_tracker-{{ checksum "Gemfile.lock" }}
 
       # Database setup
       - run: bundle exec rake db:create
